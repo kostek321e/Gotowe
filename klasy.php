@@ -5,7 +5,7 @@ include('connect.php');
 /*
  * -------------------------------------------------
  *
- *                      Management
+ *                      klasa Kontakty
  *
  * -------------------------------------------------
  */
@@ -13,7 +13,7 @@ include('connect.php');
 
 
 
-class GlownaADD{
+class kontakty{
     public $firm2;
     public $Imie;
     public $Nazwisko;
@@ -23,8 +23,10 @@ class GlownaADD{
     public $NrKomorkowy;
     public $NrStacjonarny;
     public $email;
-    public function __construct(string $Imie,string $Nazwisko,string $firm2,string $Oddzial,string $Dzial,string $Stanowisko,string $NrStacjonarny,string $NrKomorkowy,string $email)
+    public $id;
+    public function __construct($id ,string $Imie,string $Nazwisko,string $firm2,string $Oddzial,string $Dzial,string $Stanowisko,string $NrStacjonarny,string $NrKomorkowy,string $email)
     {
+        $this->id = $id;
         $this->Imie = $Imie;
         $this->Nazwisko = $Nazwisko;
         $this->firm2 = $firm2;
@@ -35,6 +37,7 @@ class GlownaADD{
         $this->NrKomorkowy = $NrKomorkowy;
         $this->email = $email;
     }
+
     public function SendToBase(){
         global $mysqli;
         $statement = $mysqli->prepare("INSERT glowna (Imie,Nazwisko,Firma,Oddzial,Dzial,Stanowisko,numerStacjonarny,numerKomorkowy,adresEmail) VALUES (?,?,?,?,?,?,?,?,?)");
@@ -42,87 +45,126 @@ class GlownaADD{
         $statement->execute();
         $statement->close();
 
+
+    }
+    public function UpdateBase(){
+        global $mysqli;
+        $statement = $mysqli->prepare("UPDATE glowna SET Imie='$this->Imie',Nazwisko='$this->Nazwisko',Firma='$this->firm2',Oddzial='$this->Oddzial',Dzial='$this->Dzial',Stanowisko='$this->Stanowisko',numerStacjonarny='$this->NrStacjonarny',numerKomorkowy='$this->NrKomorkowy',adresEmail='$this->email' WHERE ID = '$this->id' LIMIT 1 ");
+        $statement->bind_param("sssssssssi", $this->Imie, $this->Nazwisko, $this->firm2, $this->Oddzial, $this->Dzial, $this->Stanowisko, $this->NrStacjonarny, $this->NrKomorkowy, $this->email,$this->id);
+        $statement->execute();
+        $statement->close();
+
+
+    }
+    public function RemoveKontakt(){
+        global $mysqli;
+        $statement = $mysqli->prepare("DELETE FROM glowna WHERE ID = ? LIMIT 1 ");
+        $statement->bind_param("i", $this->id);
+        $statement->execute();
+        $statement->close();
+
     }
 
 }
 
-class Firma {
-    public $firma;
-    public function __construct(string $firma)
+
+/*
+ * -------------------------------------------------
+ *
+ *                      Dodawanie
+ *
+ * -------------------------------------------------
+ */
+
+
+
+class AddSlownikowa {
+    public $name;
+    public function __construct(string $name)
     {
-       $this->firma = $firma;
+        $this->name = $name;
     }
-    public function SendFirmToBase(){
-            global $mysqli;
-            $statement = $mysqli->prepare("INSERT firmy (Firma) VALUES (?)");
-            $statement->bind_param("s", $this->firma);
-            $statement->execute();
-            $statement->close();
+    public function SendFirmaToBase(){
+        global $mysqli;
+        $statement = $mysqli->prepare("INSERT firmy (Firma) VALUES (?)");
+        $statement->bind_param("s", $this->name);
+        $statement->execute();
+        $statement->close();
+
+
 
     }
-}
 
-class Oddzial {
-    public $oddzial;
-    public function __construct(string $oddzial)
-    {
-        $this->oddzial = $oddzial;
-    }
     public function SendDeparToBase(){
         global $mysqli;
         $statement = $mysqli->prepare("INSERT oddzialy (Oddzial) VALUES (?)");
-        $statement->bind_param("s", $this->oddzial);
+        $statement->bind_param("s", $this->name);
         $statement->execute();
         $statement->close();
 
-    }
-}
 
-class Dzial {
-    public $Dzial;
-    public function __construct(string $Dzial)
-    {
-        $this->Dzial = $Dzial;
     }
+
     public function SendSecToBase(){
         global $mysqli;
         $statement = $mysqli->prepare("INSERT dzialy (Dzial) VALUES (?)");
-        $statement->bind_param("s", $this->Dzial);
+        $statement->bind_param("s", $this->name);
         $statement->execute();
         $statement->close();
 
     }
-}
 
-class Stanowisko {
-    public $Stanowisko;
-    public function __construct(string $Stanowisko)
-    {
-        $this->Stanowisko = $Stanowisko;
-    }
     public function SendStToBase(){
         global $mysqli;
         $statement = $mysqli->prepare("INSERT stanowiska (stanowisko) VALUES (?)");
-        $statement->bind_param("s", $this->Stanowisko);
+        $statement->bind_param("s", $this->name);
         $statement->execute();
         $statement->close();
 
     }
 }
+/*
+ * -------------------------------------------------
+ *
+ *                    Usuwanie
+ *
+ * -------------------------------------------------
+ */
 
-class RecordRemove{
+
+class Remove{
     public $rekord;
     public function __construct(string $rekord)
     {
         $this->rekord = $rekord;
     }
-    public function RemoveRecord(){
+    public function RemoveFirma(){
         global $mysqli;
-        $statement = $mysqli->prepare("DELETE FROM glowna WHERE ID = ? LIMIT 1 ");
+        $statement = $mysqli->prepare("DELETE FROM firmy WHERE ID = ? LIMIT 1 ");
         $statement->bind_param("i", $this->rekord);
         $statement->execute();
         $statement->close();
-
+    }
+    public function RemoveOddzial(){
+        global $mysqli;
+        $statement = $mysqli->prepare("DELETE FROM oddzialy WHERE ID = ? LIMIT 1 ");
+        $statement->bind_param("i", $this->rekord);
+        $statement->execute();
+        $statement->close();
+    }
+    public function RemoveDzial(){
+        global $mysqli;
+        $statement = $mysqli->prepare("DELETE FROM dzialy WHERE ID = ? LIMIT 1 ");
+        $statement->bind_param("i", $this->rekord);
+        $statement->execute();
+        $statement->close();
+    }
+    public function RemoveStanowisko(){
+        global $mysqli;
+        $statement = $mysqli->prepare("DELETE FROM stanowiska WHERE ID = ? LIMIT 1 ");
+        $statement->bind_param("i", $this->rekord);
+        $statement->execute();
+        $statement->close();
     }
 }
 
@@ -137,7 +179,7 @@ class RecordRemove{
 
 class Widoki{
 
-    public function WidokGlownej(){
+    public function WidokKontakty(){
         global $mysqli;
         global $glowna;
         foreach ($mysqli->query($glowna) as $row) {
@@ -212,9 +254,77 @@ class Widoki{
 
 class SELEKTY{
 
+    public function WyborFirmyDoUsuniecia(){
+        global $mysqli;
+        $Firmquery = "SELECT * FROM firmy ORDER BY id ASC";
+        $Firmresult = $mysqli->query($Firmquery);
+
+        foreach ($Firmresult as $row)
+        {
+            echo '<option value="'.$row["id"].'.'.$row["Firma"].'">'.$row["id"].'.'.$row["Firma"].'</option>';
+        }
+    }
+
+    public function WyborOddzialuDoUsuniecia(){
+        global $mysqli;
+        $Oddquery = "SELECT * FROM oddzialy ORDER BY id ASC";
+        $Oddmresult = $mysqli->query($Oddquery);
+
+        foreach ($Oddmresult as $row)
+        {
+            echo '<option value="'.$row["id"].'.'.$row["Oddzial"].'">'.$row["id"].'.'.$row["Oddzial"].'</option>';
+        }
+    }
+
+    public function WyborDzialuDoUsuniecia(){
+        global $mysqli;
+        $Dzquery = "SELECT * FROM dzialy ORDER BY id ASC";
+        $Dzresult = $mysqli->query($Dzquery);
+
+        foreach ($Dzresult as $row)
+        {
+            echo '<option value="'.$row["id"].'.'.$row["Dzial"].'">'.$row["id"].'.'.$row["Dzial"].'</option>';
+        }
+    }
+
+    public function WyborStanowiskaDoUsuniecia(){
+        global $mysqli;
+        $Stmquery = "SELECT * FROM stanowiska ORDER BY id ASC";
+        $Stresult = $mysqli->query($Stmquery);
+
+        foreach ($Stresult as $row)
+        {
+            echo '<option value="'.$row["id"].'.'.$row["stanowisko"].'">'.$row["id"].'.'.$row["stanowisko"].'</option>';
+        }
+    }
+
+
+
+
+        public function WyborIdKontaktu(){
+        global $mysqli;
+        $GLiquery = "SELECT * FROM glowna ORDER BY id ASC";
+        $GLiresult = $mysqli->query($GLiquery);
+
+        foreach ($GLiresult as $row)
+        {
+            echo '<option value="'.$row["id"].'.'.$row["Imie"].'.'.$row["Nazwisko"].'.'.$row["Firma"].'.'.$row["Oddzial"].'.'.$row["Dzial"].'.'.$row["Stanowisko"].'.'.$row["numerStacjonarny"].'.'.$row["numerKomorkowy"].'.'.$row["adresEmail"].'">'.$row["id"].'  '.$row["Imie"].'  '.$row["Nazwisko"].'  '.$row["Firma"].'  '.$row["Oddzial"].'  '.$row["Dzial"].'  '.$row["Stanowisko"].'  '.$row["numerStacjonarny"].'  '.$row["numerKomorkowy"].'  '.$row["adresEmail"].'</option>';
+        }
+    }
+
+    public function WyborKontaktu(){
+        global $mysqli;
+        $GLquery = "SELECT * FROM glowna ORDER BY id ASC";
+        $GLresult = $mysqli->query($GLquery);
+
+        foreach ($GLresult as $row)
+        {
+            echo '<option value="'.$row["id"].'.'.$row["Imie"].'.'.$row["Nazwisko"].'.'.$row["Firma"].'.'.$row["Oddzial"].'.'.$row["Dzial"].'.'.$row["Stanowisko"].'.'.$row["numerStacjonarny"].'.'.$row["numerKomorkowy"].'.'.$row["adresEmail"].'">'.$row["id"].'  '.$row["Imie"].'  '.$row["Nazwisko"].'  '.$row["Firma"].'  '.$row["Oddzial"].'  '.$row["Dzial"].'  '.$row["Stanowisko"].'  '.$row["numerStacjonarny"].'  '.$row["numerKomorkowy"].'  '.$row["adresEmail"].'</option>';
+        }
+    }
     public function WyborFirmy(){
         global $mysqli;
-        $Firmquery = "SELECT Firma FROM firmy ORDER BY id ASC";
+        $Firmquery = "SELECT * FROM firmy ORDER BY id ASC";
         $Firmresult = $mysqli->query($Firmquery);
 
         foreach ($Firmresult as $row)
@@ -225,7 +335,7 @@ class SELEKTY{
 
     public function WyborOddzialu(){
         global $mysqli;
-        $Oddquery = "SELECT Oddzial FROM oddzialy ORDER BY id ASC";
+        $Oddquery = "SELECT * FROM oddzialy ORDER BY id ASC";
         $Oddmresult = $mysqli->query($Oddquery);
 
         foreach ($Oddmresult as $row)
@@ -236,7 +346,7 @@ class SELEKTY{
 
     public function WyborDzialu(){
         global $mysqli;
-        $Dzquery = "SELECT Dzial FROM dzialy ORDER BY id ASC";
+        $Dzquery = "SELECT * FROM dzialy ORDER BY id ASC";
         $Dzresult = $mysqli->query($Dzquery);
 
         foreach ($Dzresult as $row)
@@ -247,7 +357,7 @@ class SELEKTY{
 
     public function WyborStanowiska(){
         global $mysqli;
-        $Stmquery = "SELECT stanowisko FROM stanowiska ORDER BY id ASC";
+        $Stmquery = "SELECT * FROM stanowiska ORDER BY id ASC";
         $Stresult = $mysqli->query($Stmquery);
 
         foreach ($Stresult as $row)
@@ -256,28 +366,7 @@ class SELEKTY{
         }
     }
 
-    public function WyborRekordu(){
-        global $mysqli;
-        $GLquery = "SELECT * FROM glowna ORDER BY id ASC";
-        $GLresult = $mysqli->query($GLquery);
-
-        foreach ($GLresult as $row)
-        {
-            echo '<option value="'.$row["id"].'.'.$row["Imie"].'.'.$row["Nazwisko"].'.'.$row["Firma"].'.'.$row["Oddzial"].'.'.$row["Dzial"].'.'.$row["Stanowisko"].'.'.$row["numerStacjonarny"].'.'.$row["numerKomorkowy"].'.'.$row["adresEmail"].'">'.$row["id"].'  '.$row["Imie"].'  '.$row["Nazwisko"].'  '.$row["Firma"].'  '.$row["Oddzial"].'  '.$row["Dzial"].'  '.$row["Stanowisko"].'  '.$row["numerStacjonarny"].'  '.$row["numerKomorkowy"].'  '.$row["adresEmail"].'</option>';
-        }
-    }
-
-
 
 
 }
-
-
-
-
-
-
-
-
-
-
+?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Sie 2022, 14:35
+-- Czas generowania: 03 Sie 2022, 10:59
 -- Wersja serwera: 10.4.22-MariaDB
 -- Wersja PHP: 7.4.28
 
@@ -42,9 +42,7 @@ INSERT INTO `dzialy` (`id`, `Dzial`) VALUES
 (3, 'Dzial 3'),
 (4, 'Dzial 5'),
 (5, 'Dzial 5'),
-(6, 'Dzial 6'),
-(7, 'Dzial 9'),
-(8, 'test');
+(6, 'Dzial 6');
 
 -- --------------------------------------------------------
 
@@ -67,10 +65,7 @@ INSERT INTO `firmy` (`id`, `Firma`) VALUES
 (3, 'POLBRUK'),
 (4, 'CocaCola'),
 (14, 'ORLEN'),
-(15, 'ORLEN'),
-(17, 'Orlen'),
-(18, 'Firma18'),
-(19, 'test');
+(62, 'Lotos');
 
 -- --------------------------------------------------------
 
@@ -96,12 +91,13 @@ CREATE TABLE `glowna` (
 --
 
 INSERT INTO `glowna` (`id`, `Imie`, `Nazwisko`, `Firma`, `Oddzial`, `Dzial`, `Stanowisko`, `numerStacjonarny`, `numerKomorkowy`, `adresEmail`) VALUES
-(1, 'Kamil', 'Kostun', 'Grupa DBK', 'Pierwszy Oddzial', 'Dział 1', 'Programista', '123456789', '965874123', 'kostek123e@gmail.com'),
-(2, 'Marcin', 'Skrzynka', 'POLBRUK', 'Drugi Oddzial', '', 'Programista', '456987123', '654123987', 'skrzyneczka@bis.pl'),
-(3, 'Kacper', 'Pawłowski', 'Firma2', 'Drugi Oddzial', 'Dział 2', 'Dyrektor', '654123987', '561324987', 'Powlo@dynks.com'),
-(4, 'Null', 'Test', 'Grupa DBK', 'Pierwszy Oddzial', 'Dzial 3', 'ksiegowa', '456987123', '', 'test@test.com'),
 (5, 'Null', 'Test', 'Firma2', 'Drugi Oddzial', 'Dział 1', 'Programista', '456987123', '', 'hanna.kostun@onet.pl'),
-(46, 'final', 'final', 'Grupa DBK', 'Pierwszy Oddzial', '', 'Programista', '123564982', '568423917', 'test@test.com');
+(47, 'test6', 'test6', 'Firma2', 'Czwarty Oddzial', 'Dział 2', 'Dyrektor', '156984723', '739591655', 'test@test.com'),
+(48, 'Hanna', 'Jóźwiak', 'Firma2', 'Drugi Oddzial', 'Dział 1', 'Dyrektor', '456987123', '516301518', 'mail@mail.com'),
+(49, 'test', 'test', 'Firma2', 'Drugi Oddzial', 'Dział 2', 'Dyrektor', '', '', ''),
+(50, 'testt', 'testt', 'Firma2', 'Pierwszy Oddzial', 'Dzial 3', 'Programista', '516301467', '694133713', 'kamil.kostun@onet.pl'),
+(51, 'Karolina', 'Leonarczyk', 'Firma2', 'Pierwszy Oddzial', 'Dział 2', 'Dyrektor', '563214789', '456321789', 'KarolinaLeonarczyk@op.pl'),
+(60, 'test', 'test', 'Grupa DBK', 'Pierwszy Oddzial', 'Dział 1', 'Dyrektor', '123123123', '123123123', 'test@test.pl');
 
 -- --------------------------------------------------------
 
@@ -122,9 +118,7 @@ INSERT INTO `oddzialy` (`id`, `Oddzial`) VALUES
 (1, 'Pierwszy Oddzial'),
 (2, 'Drugi Oddzial'),
 (3, 'Trzeci Oddzial'),
-(4, 'Czwarty Oddzial'),
-(5, 'Oddzial6'),
-(6, 'test');
+(4, 'Czwarty Oddzial');
 
 -- --------------------------------------------------------
 
@@ -145,9 +139,7 @@ INSERT INTO `stanowiska` (`id`, `stanowisko`) VALUES
 (1, 'Dyrektor'),
 (2, 'Programista'),
 (3, 'ksiegowa'),
-(4, 'Stanowisko1'),
-(5, 'Stanowisko5'),
-(6, 'test');
+(5, 'Stanowisko5');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -191,31 +183,31 @@ ALTER TABLE `stanowiska`
 -- AUTO_INCREMENT dla tabeli `dzialy`
 --
 ALTER TABLE `dzialy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT dla tabeli `firmy`
 --
 ALTER TABLE `firmy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT dla tabeli `glowna`
 --
 ALTER TABLE `glowna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT dla tabeli `oddzialy`
 --
 ALTER TABLE `oddzialy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT dla tabeli `stanowiska`
 --
 ALTER TABLE `stanowiska`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
