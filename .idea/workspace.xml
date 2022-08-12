@@ -4,12 +4,9 @@
     <list default="true" id="886917a5-b452-45d6-8324-3388d1500572" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/connect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/contacts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/klasy.php" beforeDir="false" afterPath="$PROJECT_DIR$/klasy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/management.php" beforeDir="false" afterPath="$PROJECT_DIR$/management.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dzialy.js" beforeDir="false" afterPath="$PROJECT_DIR$/Dzialy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js2/Kontaktyjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/js2/Kontaktyjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nowyplik.php" beforeDir="false" afterPath="$PROJECT_DIR$/nowyplik.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +70,8 @@
       <workItem from="1660199530938" duration="16763000" />
       <workItem from="1660217837046" duration="9211000" />
       <workItem from="1660241116403" duration="10777000" />
-      <workItem from="1660284291109" duration="7253000" />
+      <workItem from="1660284291109" duration="7609000" />
+      <workItem from="1660296414104" duration="4694000" />
     </task>
     <servers />
   </component>

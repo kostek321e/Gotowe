@@ -9,15 +9,14 @@ $(document).ready(function () {
          orderCellsTop: true,
          autoWidth: false,
          processing: true,
-         // searching: false,
-         paging: false,
+         searching: true,
+         paging: true,
          dom: 'rt',
          order: [[0, 'desc']],
-         serverSide: false,
+         serverSide: true,
          ajax: {
              url: ajaxUrl,
          },
-         pageLenght: 10,
 
 
 
@@ -32,59 +31,126 @@ $(document).ready(function () {
          columns: [
              {
                  title: 'id',
-                 data: 'id'
-
+                 data: 'id',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
              },
              {
                  title: 'Imie',
                  data: 'Imie',
-
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
              },
              {
                  title: 'Nazwisko',
-                 data: 'Nazwisko'
-
+                 data: 'Nazwisko',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
              },
              {
                  title: 'Firma',
                  data: 'Firma',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
 
              },
              {
                  title: 'Oddzial',
                  data: 'Oddzial',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
 
              },
              {
                  title: 'Dzial',
                  data: 'Dzial',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
 
              },
              {
                  title: 'Stanowisko',
                  data: 'Stanowisko',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
 
             },
              {
                  title: 'numer Stacjonarny',
                  data: 'numerStacjonarny',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
 
              },
              {
                  title: 'numer komorkowy',
                  data: 'numerKomorkowy',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
 
              },
              {
                  title: 'Adres Email',
                  data: 'adresEmail',
+                 render: function (data, type, row) {
+                     if (data) {
+                         return data;
+                     } else {
+                         return '';
+                     }
+                 }
 
 
              }, {
@@ -92,10 +158,10 @@ $(document).ready(function () {
                  data: null,
                  targets: 10,
                  render: function (data, type, row, meta) {
-                     let buttons = '<center><div class="btn-group btn-group-sm2" role="group">';
-                     buttons += '<button title="Edytuj"  class="btn btn-warning EditButton">Edytuj</button>';
+                     let buttons = '<div class="btn-group btn-group-sm2" role="group">';
+                     buttons += '<button title="Edytuj" name="EditBtn"  class="btn btn-warning EditButton">Edytuj</button>';
                      buttons += '<button name="DeleteBtn" id="DeleteBtn" title="Usuń"  class="btn btn-danger DeleteBtn">Usuń</button>';
-                     buttons += '</div></center>'
+                     buttons += '</div>'
                      return buttons;
                  },
 
@@ -183,6 +249,30 @@ $(document).ready(function () {
             }
         })
     })
+
+
+        $(document).on('click', '.DeleteBtn', function (event) {
+
+            var id = $(this).data('id');
+            if (confirm('Czy jestes tego pewien?')) {
+                $.ajax({
+                    url: "http://localhost/projek2/Test-Praca/js2/usuwanie.php",
+                    data: {id: id},
+                    type: "post",
+                    success: function (data) {
+                        var json = JSON.parse(data);
+                        var status = json.status;
+                        if (status == 'sucess') {
+                            $('#' + id).closest('tr').remove();
+                        } else {
+                            alert('failed');
+                        }
+
+                    }
+                });
+            }
+        });
+
  });
 
 
