@@ -1,7 +1,10 @@
-
+<?php
+include('klasy.php');
+?>
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -10,6 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="resources/semantic.min.css">
     <link rel="stylesheet" href="resources/custom.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.12.1/datatables.min.css"/>
     <style>
         body{
             margin: 0;
@@ -17,6 +21,7 @@
             height: 100%;
             min-height: 100%;
         }
+
         footer{
             float: left;
             width: 100%;
@@ -27,6 +32,7 @@
             clear: both;
             position: absolute; bottom: 0;
         }
+
         table{
             width: 20%;
         }
@@ -44,7 +50,11 @@
     </style>
 </head>
 <body>
-
+<?php
+$navbar1='';
+$navbar1= new Nav();
+$navbar1->navBarIndex();
+?>
 <h2 style="margin-top: 20px" class="text-center">Zadanie Testowe - Kamil Kostun</h2>
 <div class="container-lg my-5">
     <div class="row">
@@ -57,6 +67,18 @@
     </div>
 
 </div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Firmy.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Dzialy.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Oddzialy.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Stanowiska.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
 <div class="allButFooter">

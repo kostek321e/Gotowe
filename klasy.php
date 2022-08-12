@@ -1,6 +1,6 @@
 <?php
 include('connect.php');
-
+require_once 'livespace.php';
 
 /*
  * -------------------------------------------------
@@ -24,6 +24,7 @@ class kontakty{
     public $NrStacjonarny;
     public $email;
     public $id;
+
     public function __construct($id ,string $Imie,string $Nazwisko,string $firm2,string $Oddzial,string $Dzial,string $Stanowisko,string $NrStacjonarny,string $NrKomorkowy,string $email)
     {
         $this->id = $id;
@@ -36,6 +37,7 @@ class kontakty{
         $this->NrStacjonarny = $NrStacjonarny;
         $this->NrKomorkowy = $NrKomorkowy;
         $this->email = $email;
+
     }
 
     public function SendToBase(){
@@ -369,4 +371,331 @@ class SELEKTY{
 
 
 }
+
+class dtm_livespace
+{
+
+    var $_ls_api = array();
+    var $_ls = null;
+    private $_ls_code;
+
+    function __construct()
+    {
+
+//        $this->_ls_api = array(
+//            'api_url' => 'https://dbk4.livespace.io',
+//            'api_key' => 'd34fnf65h48crubkaf7kgnrta4bzh1',
+//            'api_secret' => 'qu5v9tagysl74c2');
+//        $this->_ls_api = array(
+//            'api_url' => 'https://dbk4.livespace.io',
+//            'api_key' => 'osd9pxfalci2bcvvmwz3b3oy9f929x',
+//            'api_secret' => 'dypq8fnop908bck'
+//        );
+//        tech_user NI
+        $this->_ls_api = array(
+            'api_url' => 'https://dbk.livespace.io',
+            'api_key' => 'd34fnf65h48crubkaf7kgnrta4bzh1',
+            'api_secret' => 'qu5v9tagysl74c2');
+
+        $this->_ls = new LiveSpace(
+            array(
+                'api_url' => $this->_ls_api['api_url'],
+                'api_key' => $this->_ls_api['api_key'],
+                'api_secret' => $this->_ls_api['api_secret']
+            )
+        );
+
+        $this->_ls_code = array(
+            200 => "OK",
+            400 => "błąd ogólny",
+            420 => "błąd walidacji",
+            500 => "błąd ogólny api",
+            514 => "niepoprawny moduł",
+            515 => "niepoprawna metoda",
+            516 => "niepoprawny format wyjścia",
+            520 => "błąd komunikacji z bazą",
+            530 => "użytkownik niezalogowany",
+            540 => "brak uprawnień",
+            550 => "błąd obsługi parametrów",
+            560 => "niepoprawna metoda",
+            561 => "niepoprawne parametry",
+            562 => "niepoprawny klucz",
+            563 => "brak autoryzacji",
+            564 => "błąd ogólny"
+        );
+
+
+    }
+
+
+
+}
+
+
+
+
+
+class WidokKontaktow
+{
+
+    private $task = "";
+
+    function __construct()
+    {
+
+        $this->task = empty($_GET['task']) ? 'show' : $_GET['task'];
+
+        switch ($this->task) {
+            case "getData":
+                echo $this->getContactsData();
+                exit;
+            default:
+                $this->show();
+                break;
+        }
+    }
+
+    private function showContacts()
+    {
+        $html = "";
+        $html .= "<div class='row justify-content-center mb-5'> 
+                    <h1>Tabela Kontakty</h1>
+                </div>";
+        $html .= $this->createFilters();
+        $html .= '<div class="row justify-content-center">
+                    <div class="col-auto">';
+        $html .= "<table id=\"tabela_Kontakty\" class=\"table table-sm2 table-bordered table-hover \" style=\"width:100%\">        
+                        <thead class=\"bg-primary text-white\">
+                        </thead>
+                        <tbody>
+                        </tbody>             
+                    </table>";
+        $html .= "    </div>
+                  </div>";
+        $html .= "<script src='/js2/Kontaktyjs.js'></script>";
+
+        v4function::displayBoxMainContent($html, "Tabela Kontakty");
+    }
+
+//    private function getContactsData()
+   // {
+//
+//        $query = "SELECT id, Imie, Nazwisko, Firma, Oddzial, Dzial, Stanowisko, numerStacjonarny, numerKomorkowy,adresEmail
+//                 FROM glowna ORDER BY id DESC";
+//        $data = query2array($query);
+//        $data = array("data" => $data);
+//        header("Content-type: application/json");
+//        return json_encode($data);
+//    }
+
+
+
+
+
+
+
+
+
+
+    private function createFilters()
+    {
+        $form = new Form("filters");
+        $form->configure(array(
+                "action" => "#",
+                "prevent" => array("bootstrap", "jQuery"),
+                "view" => new View_SideBySide4IntraNoLabel(),
+                'errorView' => new ErrorView_IntraPL(),
+                "resourcesPath" => 'inc/PFBC/Resources',
+                "ajaxCallback" => "finishCallback"
+            )
+        );
+        $html = "";
+        $options = array(
+            '0' => "Wszystkie",
+            'A' => "Tabela A - Średni kurs",
+            'C' => "Tabela C - Kupno i sprzedaż",
+        );
+        $form->addElement(new Element_HTML('<div class="row justify-content-center mb-3">'));
+        $form->addElement(new Element_Select("Typ kursu:", '', $options, array('id' => 'type-filter', 'shared' => 'col-2', "class" => "form-control")));
+        $form->addElement(new Element_jQueryUIDate2("Data publikacji:", 'date-filter', array('id' => 'date-filter', "class" => "form-control", 'shared' => 'col-2')));
+        $form->addElement(new Element_Button('Wyczyść filtry', 'button', array('id' => 'clear-filter', 'class' => 'btn btn-primary mt-4')));
+        $form->addElement(new Element_HTML('</div>'));
+
+        $html .= $form->render(null, TRUE);
+
+        return $html;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function query2array($query = "", $fetchMode = MDB2_FETCHMODE_ASSOC, $db = null) {
+    global $mysqli;
+    if (empty($db)) {
+        $db = $mysqli;
+    }
+    try {
+        $res = $db->query($query);
+        if (PEAR::isError($res)) {
+            messagehtml(errQueryMDB2($res->getuserinfo() . "<br />" . $query), "error");
+        }
+    } catch (Exception $e) {
+        messagehtml($e->getMessage() . "<br />" . $query, "error");
+    }
+    $aLista = $res->fetchAll($fetchMode);
+
+    return $aLista;
+}
+
+
+class Nav{
+
+    function navBarKon(){
+
+        $navbar='';
+        $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
+            <div class='btn-group'>
+        <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Kontakty</button>
+        <button type='button' class='btn btn-lg btn-success'>+</button>
+    </div>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+</nav>
+        " ;
+        echo $navbar;
+
+
+    }
+    function navBarFir(){
+
+        $navbar='';
+        $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
+            <div class='btn-group'>
+        <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Firmy</button>
+        <button type='button' class='btn btn-lg btn-success'>+</button>
+    </div>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+</nav>
+        " ;
+        echo $navbar;
+
+
+    }
+    function navBarOdd(){
+
+        $navbar='';
+        $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
+            <div class='btn-group'>
+        <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Oddzialy</button>
+        <button type='button' class='btn btn-lg btn-success'>+</button>
+    </div>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+</nav>
+        " ;
+        echo $navbar;
+
+
+    }
+    function navBarDzi(){
+
+        $navbar='';
+        $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
+            <div class='btn-group'>
+        <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Dzialy</button>
+        <button type='button' class='btn btn-lg btn-success'>+</button>
+    </div>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+</nav>
+        " ;
+        echo $navbar;
+
+
+    }
+    function navBarSta(){
+
+        $navbar='';
+        $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
+            <div class='btn-group'>
+        <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Stanowiska</button>
+        <button type='button' class='btn btn-lg btn-success'>+</button>
+    </div>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
+</nav>
+        " ;
+        echo $navbar;
+
+
+    }
+    function navBarIndex(){
+
+        $navbar='';
+        $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
+        <button href=''#' class='btn btn-lg btn-primary margin-left: 200px' onclick=location.href='contacts.php'>Kontakty</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>  
+</nav>
+        " ;
+        echo $navbar;
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

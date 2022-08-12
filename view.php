@@ -14,6 +14,7 @@ include('klasy.php');
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="resources/semantic.min.css">
     <link rel="stylesheet" href="resources/custom.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.12.1/datatables.min.css"/>
     <style>
 
         body{
@@ -41,6 +42,7 @@ include('klasy.php');
             border: 2px solid #fff;
             color: #fff;
             text-align: center;
+
         }
         .allButFooter {
             min-height: calc(90vh - 95px);
@@ -48,6 +50,11 @@ include('klasy.php');
     </style>
 </head>
 <body>
+<?php
+$navbar1='';
+$navbar1= new Nav();
+$navbar1->navBar();
+?>
 <h2 style="margin-top: 20px" class="text-center">Tabele Słownikowe</h2>
 
 <div class="container-lg my-5">
@@ -92,26 +99,26 @@ include('klasy.php');
     <div class="col-md-4">
         <h2 class="text-center">Widok Tabeli "Firmy"</h2>
         <div class="table-responsive-md">
-            <table class="table table-hover table-bordered table-dark" style="width: 500px; "align="center" >
-                <thead>
-                <tr>
-
-                    <th scope="col">ID</th>
-                    <th width="90%" scope="col">Firma</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <?php
-                    $widoktabelifirmy='';
-                    $widoktabelifirmy = new Widoki();
-                    $widoktabelifirmy->WidokFirm();
-                    ?>
-                </tr>
-
-                </tbody>
-            </table>
+<!--            <table class="table table-hover table-bordered" id="Tabela_Firmy" >-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!---->
+<!--                    <th scope="col">ID</th>-->
+<!--                    <th width="90%" scope="col">Firma</th>-->
+<!---->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    --><?php
+//                    $widoktabelifirmy='';
+//                    $widoktabelifirmy = new Widoki();
+//                    $widoktabelifirmy->WidokFirm();
+//                    ?>
+<!--                </tr>-->
+<!---->
+<!--               </tbody>-->
+<!--            </table>-->
         </div>
     </div>
     <div class="col-md-4">
@@ -174,30 +181,30 @@ include('klasy.php');
         </form>
     </div>
     <div class="col-md-4">
-        <h2 class="text-center">Widok Tabeli "Oddziały"</h2>
-
-        <div class="table-responsive-md">
-            <table class="table table-hover table-bordered table-dark" style="width: 500px; "align="center" >
-                <thead>
-                <tr>
-
-                    <th scope="col">ID</th>
-                    <th width="90%" scope="col">Oddział</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <?php
-                    $widoktabelioddzialy='';
-                    $widoktabelioddzialy= new Widoki();
-                    $widoktabelioddzialy->WidokOddzialow();
-                    ?>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
+<!--        <h2 class="text-center">Widok Tabeli "Oddziały"</h2>-->
+<!---->
+<!--        <div class="table-responsive-md">-->
+<!--            <table class="table table-hover table-bordered" id="Tabela_Oddzialy" >-->
+<!--<                <thead>-->-->
+<!--<!               <tr>-->-->
+<!--<-->
+<!--<                    <th scope="col">ID</th>-->-->
+<!--                  <th width="90%" scope="col">Oddział</th>-->-->
+<!--<-->-->
+<!--<                </tr>-->-->
+<!--<                </thead>-->-->
+<!--<                <tbody>-->-->
+<!--<                <tr>-->-->
+<!--<                    -->--><?php
+////                    $widoktabelioddzialy='';
+////                    $widoktabelioddzialy= new Widoki();
+////                    $widoktabelioddzialy->WidokOddzialow();
+////                    ?>
+<!--<                </tr>-->-->
+<!---->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
     </div>
     <div class="col-md-4">
         <h2 class="text-center">Usuwanie rekordów z Tabeli "Oddziały"</h2>
@@ -261,28 +268,28 @@ include('klasy.php');
     <div class="col-md-4">
         <h2 class="text-center">Widok Tabeli "Działy"</h2>
 
-        <div class="table-responsive-md">
-            <table class="table table-hover table-bordered table-dark" style="width: 500px; "align="center" >
-                <thead>
-                <tr>
+<!--        <div class="table-responsive-md">-->
+<!--            <table class="table table-hover table-bordered" id="Tabela_Dzialy" >-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!---->
+<!--                    <th scope="col">ID</th>-->
+<!--                    <th width="90%" scope="col">Dział</th>-->
+<!---->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    --><?php
+//                    $widoktabelidzialy='';
+//                    $widoktabelidzialy= new Widoki();
+//                    $widoktabelidzialy->WidokDzialow();
+//                    ?>
+<!--                </tr>-->
 
-                    <th scope="col">ID</th>
-                    <th width="90%" scope="col">Dział</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <?php
-                    $widoktabelidzialy='';
-                    $widoktabelidzialy= new Widoki();
-                    $widoktabelidzialy->WidokDzialow();
-                    ?>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
     </div>
     <div class="col-md-4">
         <h2 class="text-center">Usuwanie rekordów z Tabeli "Działy"</h2>
@@ -347,28 +354,28 @@ include('klasy.php');
     <div class="col-md-4">
         <h2 class="text-center">Widok Tabeli "Stanowiska"</h2>
 
-        <div class="table-responsive-md">
-            <table class="table table-hover table-bordered table-dark" style="width: 500px; "align="center" >
-                <thead>
-                <tr>
+<!--        <div class="table-responsive-md">-->
+<!--            <table class="table table-hover table-bordered" id="Tabela_Stanowiska" >-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!---->
+<!--                    <th scope="col">ID</th>-->
+<!--                    <th width="90%" scope="col">Firma</th>-->
+<!---->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    --><?php
+//                    $widoktabelistanowiska='';
+//                    $widoktabelistanowiska=new Widoki();
+//                    $widoktabelistanowiska->WidokStanowisk();
+//                    ?>
+<!--                </tr>-->
 
-                    <th scope="col">ID</th>
-                    <th width="90%" scope="col">Firma</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <?php
-                    $widoktabelistanowiska='';
-                    $widoktabelistanowiska=new Widoki();
-                    $widoktabelistanowiska->WidokStanowisk();
-                    ?>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
     </div>
     <div class="col-md-4">
         <h2 class="text-center">Usuwanie rekordów z Tabeli "Stanowiska"</h2>
@@ -403,8 +410,60 @@ include('klasy.php');
     </div>
 </div>
 
+<!--   Tabela Firmy   -->
+<h2 class="text-center">Widok Tabeli "Firmy"</h2>
+<div class="table-responsive-md">
+    <table class="table table-hover table-bordered" id="Tabela_Firmy" >
+
+        </tbody>
+    </table>
+</div>
+
+<!--   Tabela Oddzialy   -->
+
+<h2 class="text-center">Widok Tabeli "Oddziały"</h2>
+<div class="table-responsive-md">
+    <table class="table table-hover table-bordered" id="Tabela_Oddzialy" >
+
+
+        </tbody>
+    </table>
+</div>
+
+<!--   Tabela Dzialy   -->
+
+<h2 class="text-center">Widok Tabeli "Działy"</h2>
+<div class="table-responsive-md">
+    <table class="table table-hover table-bordered" id="Tabela_Dzialy" >
+
+        </tbody>
+    </table>
+</div>
+
+<!--   Tabela Satnowiska   -->
+
+<h2 class="text-center">Widok Tabeli "Stanowiska"</h2>
+<div class="table-responsive-md">
+    <table class="table table-hover table-bordered" id="Tabela_Stanowiska" >
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
 
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Firmy.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Dzialy.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Oddzialy.js"></script>
+<script src="http://localhost/projek2/Test-Praca/Stanowiska.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="js/bootstrap.js"></script>
 <div class="allButFooter">
 </div>
 <footer style="position: sticky">

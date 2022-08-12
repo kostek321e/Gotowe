@@ -525,7 +525,7 @@ if (isset($_POST['EdytujRekord'])){
 
 
 <footer style="position: sticky" >
-    <button type="button" class="btn btn-info" onclick="location.href='contacts.php';">Kontakty</button>
+    <button type="button" class="btn btn-info" onclick=location.href='contacts.php'>Kontakty</button>
 </footer>
 </body>
 </html>

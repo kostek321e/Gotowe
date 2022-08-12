@@ -1,7 +1,7 @@
 <?php
 $dbServer = 'localhost';
 $dbUser = 'root';
-$dbPassword = '';
+$dbPassword = '123456';
 $dbName = 'praca';
 
 $mysqli = new mysqli($dbServer,$dbUser,$dbPassword,$dbName);
@@ -15,6 +15,7 @@ $Oddzialy = 'SELECT * FROM oddzialy ORDER BY id';
 $dzialy = 'SELECT * FROM dzialy ORDER BY id';
 $stanowiska = 'SELECT * FROM stanowiska ORDER BY id';
 $glowna = 'SELECT * FROM glowna ORDER BY id';
+$kontakty = 'SELECT * FROM glowna';
 
 ?>
 
