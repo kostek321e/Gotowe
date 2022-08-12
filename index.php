@@ -56,20 +56,6 @@ $navbar1= new Nav();
 $navbar1->navBarIndex();
 ?>
 <h2 style="margin-top: 20px" class="text-center">Zadanie Testowe - Kamil Kostun</h2>
-<div class="container-lg my-5">
-    <div class="row">
-        <div class="col-md-4"><button type="button" class="btn btn-lg" onclick="location.href='view.php';">Tabele Słownikowe</button>
-        </div>
-        <div class="col-md-4">
-            <button type="button" class="btn btn-link btn-lg"  onclick="location.href='contacts.php';">Kontakty</button>
-        </div>
-        <div class="col-md-4"><button type="button" class="btn btn-lg" onclick="location.href='management.php';">Zarządzanie</button></div>
-    </div>
-
-</div>
-
-
-
 
 
 
@@ -83,8 +69,5 @@ $navbar1->navBarIndex();
 <script src="js/bootstrap.js"></script>
 <div class="allButFooter">
 </div>
-<footer style="position: sticky">
-    <button type="button" class="btn btn-link" onclick="location.href='contacts.php';">Kontakty</button>
-</footer>
 </body>
 </html>

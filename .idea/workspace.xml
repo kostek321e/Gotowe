@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="886917a5-b452-45d6-8324-3388d1500572" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dzialy/fetch_single_Dzialy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dzialy/usuwanieDzialy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Firmy/fetch_single_Firmy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Firmy/usuwanieFrm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Oddzialy/fetch_single_Oddzialy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Oddzialy/usuwanieOddzialy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Stanowiska/fetch_single_Stanowiska.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Stanowiska/usuwanieStanowiska.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dzialy.js" beforeDir="false" afterPath="$PROJECT_DIR$/Dzialy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Firmy.js" beforeDir="false" afterPath="$PROJECT_DIR$/Firmy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Oddzialy.js" beforeDir="false" afterPath="$PROJECT_DIR$/Oddzialy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stanowiska.js" beforeDir="false" afterPath="$PROJECT_DIR$/Stanowiska.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fetch_single.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js2/Kontaktyjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/js2/Kontaktyjs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nowyplik.php" beforeDir="false" afterPath="$PROJECT_DIR$/nowyplik.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/klasy.php" beforeDir="false" afterPath="$PROJECT_DIR$/klasy.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +83,7 @@
       <workItem from="1660217837046" duration="9211000" />
       <workItem from="1660241116403" duration="10777000" />
       <workItem from="1660284291109" duration="7609000" />
-      <workItem from="1660296414104" duration="4694000" />
+      <workItem from="1660296414104" duration="14444000" />
     </task>
     <servers />
   </component>

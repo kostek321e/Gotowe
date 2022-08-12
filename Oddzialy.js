@@ -31,12 +31,44 @@ $(document).ready(function () {
                 data: 'Oddzial',
                 width: '70%'
 
-            }
+            },            {
+                title: 'Akcje',
+                data: null,
+                targets: 10,
+                render: function (data, type, row, meta) {
+                    let buttons = '<div class="btn-group btn-group-sm2" role="group">';
+                    buttons += '<button title="Edytuj" name="EditBtn"  class="btn btn-warning EditBtn">Edytuj</button>';
+                    buttons += '<button name="DeleteBtn" id="DeleteBtn" title="Usuń"  class="btn btn-danger DeleteBtn">Usuń</button>';
+                    buttons += '</div>'
+                    return buttons;
+                },
+
+            },
         ]
 
 
     });
 
+    $(document).on('click', '.DeleteBtn', function (event) {
 
+        var id = $(this).data('id');
+        if (confirm('Czy jestes tego pewien?')) {
+            $.ajax({
+                url: "http://localhost/projek2/Test-Praca/js2/usuwanieOddzialy.php",
+                data: {id: id},
+                type: "post",
+                success: function (data) {
+                    var json = JSON.parse(data);
+                    var status = json.status;
+                    if (status == 'sucess') {
+                        $('#' + id).closest('tr').remove();
+                    } else {
+                        alert('failed');
+                    }
+
+                }
+            });
+        }
+    });
 
 });

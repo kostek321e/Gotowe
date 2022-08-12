@@ -588,6 +588,7 @@ class Nav{
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='index.php'>Strona Główna</button>
 </nav>
         " ;
         echo $navbar;
@@ -595,17 +596,17 @@ class Nav{
 
     }
     function navBarFir(){
-
         $navbar='';
         $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
             <div class='btn-group'>
         <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Firmy</button>
-        <button type='button' class='btn btn-lg btn-success'>+</button>
+        <button type='button' name='FirmaBtn' id='FirmaBtn' class='btn btn-lg btn-success'>+</button>
     </div>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='index.php'>Strona Główna</button>
 </nav>
         " ;
         echo $navbar;
@@ -624,6 +625,7 @@ class Nav{
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='index.php'>Strona Główna</button>
 </nav>
         " ;
         echo $navbar;
@@ -642,6 +644,7 @@ class Nav{
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WStanowiska.php'>Stanowiska</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='index.php'>Strona Główna</button>
 </nav>
         " ;
         echo $navbar;
@@ -660,6 +663,7 @@ class Nav{
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WDzialy.php'>Dzialy</button>
+        <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='index.php'>Strona Główna</button>
 </nav>
         " ;
         echo $navbar;
@@ -682,10 +686,165 @@ class Nav{
 
     }
 
+
+
+
+
+}
+
+
+class Modals{
+
+function FirmModal()
+{
+    $FirmModal = '';
+    $FirmModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Firmy</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <form>
+                    <div class='form-group'>
+                        <label for='exampleInputEmail1'>Nazwa Firmy</label>
+                        <input type='text' required id='Firm1' name='Firm1' aria-describedby='emailHelp' placeholder='Podaj Nazwe Firmy'>
+                    </div>
+                    <button type='submit' id='SubmitFirm' name='SubmitFirm' class='btn btn-primary'>Submit</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                <button type='button' class='btn btn-primary'>Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>";
+
+    echo $FirmModal;
+
 }
 
 
 
+//////////////////////////////////////////////////////////////////////////////
+    function OddzialModal()
+    {
+        $OddzialModal = '';
+        $OddzialModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Oddzialu</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <form>
+                    <div class='form-group'>
+                        <label for='exampleInputEmail1'>Podaj Nazwe Oddzialu</label>
+                        <input type='text' required id='Oddzial1' name='Oddzial1' aria-describedby='emailHelp' placeholder='Podaj Nazwe oddzialu'>
+                    </div>
+                    <button type='submit' id='SubmitOddzial' name='SubmitOddzial' class='btn btn-primary'>Submit</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                <button type='button' class='btn btn-primary'>Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>";
+
+        echo $OddzialModal;
+
+    }
+
+    ////////////////////////////////////////////////////////////////////
+
+
+    function DzialModal()
+    {
+        $DzialModal = '';
+        $DzialModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Działu</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <form>
+                    <div class='form-group'>
+                        <label for='exampleInputEmail1'>Podaj Nazwe Działu</label>
+                        <input type='text' required id='Dzial1' name='Dzial1' aria-describedby='emailHelp' placeholder='Podaj Nazwe Działu'>
+                    </div>
+                    <button type='submit' id='SubmitDzial' name='SubmitDzial' class='btn btn-primary'>Submit</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                <button type='button' class='btn btn-primary'>Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>";
+
+        echo $DzialModal;
+
+    }
+
+
+////////////////////////////////////////////////////////////////////////
+
+
+    function StanowiskoModal()
+    {
+        $StanowiskoModal = '';
+        $StanowiskoModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Stanowisk</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <form>
+                    <div class='form-group'>
+                        <label for='exampleInputEmail1'>Podaj Nazwe Stanowiska</label>
+                        <input type='text' required id='Stanowisko1' name='Stanowisko1' aria-describedby='emailHelp' placeholder='Podaj Nazwe Stanowiska'>
+                    </div>
+                    <button type='submit' id='SubmitStanowisko' name='SubmitStanowisko' class='btn btn-primary'>Submit</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                <button type='button' class='btn btn-primary'>Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>";
+
+        echo $StanowiskoModal;
+
+    }
+
+
+
+
+
+
+
+
+}
 
 
 
