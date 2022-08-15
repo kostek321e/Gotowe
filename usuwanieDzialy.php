@@ -1,11 +1,11 @@
 <?php
 include ('connect.php');
-include ('TabelaOddzialy.php');
+include ('TabelaDzialy.php');
 global $mysqli;
 
 
-$user_id = $_POST['id'];
-$sql = "DELETE FROM glowna WHERE id='$user_id'";
+$dzial_id = $_POST['id'];
+$sql = "DELETE FROM dzialy WHERE id='$dzial_id'";
 $delQuery = mysqli_query($mysqli,$sql);
 if($delQuery==true)
 {

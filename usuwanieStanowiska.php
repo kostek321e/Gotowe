@@ -4,8 +4,8 @@ include ('TabelaStanowiska.php');
 global $mysqli;
 
 
-$user_id = $_POST['id'];
-$sql = "DELETE FROM glowna WHERE id='$user_id'";
+$stanowisko_id = $_POST['id'];
+$sql = "DELETE FROM stanowiska WHERE id='$stanowisko_id'";
 $delQuery = mysqli_query($mysqli,$sql);
 if($delQuery==true)
 {

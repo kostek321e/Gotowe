@@ -71,16 +71,38 @@ $navbar1->navBarOdd();
 
 
 
+<div id="update_Modal4" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                    
+                     <h4 class="modal-title">Oddzialy</h4>  
+                </div>  
+                <div class="modal-body">  
+                     <form method="post" id="insert_form4">  
+                          <label>Podaj Nazwe Oddzialu</label>  
+                          <input type="text" name="Oddzial" id="Oddzial" class="form-control " required />  
+                          <br />  
+                          <input type="hidden" name="id" id="id" />  
+                          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
+                     </form>  
+                </div>  
+         
+           </div>  
+      </div>  
+ </div> 
+
+
+
+
+
 
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
-<script src="http://localhost/projek2/Test-Praca/Firmy.js"></script>
-<script src="http://localhost/projek2/Test-Praca/Dzialy.js"></script>
 <script src="http://localhost/projek2/Test-Praca/Oddzialy.js"></script>
-<script src="http://localhost/projek2/Test-Praca/Stanowiska.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
 <div class="allButFooter">

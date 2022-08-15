@@ -55,8 +55,7 @@ class kontakty{
         $statement->bind_param("sssssssssi", $this->Imie, $this->Nazwisko, $this->firm2, $this->Oddzial, $this->Dzial, $this->Stanowisko, $this->NrStacjonarny, $this->NrKomorkowy, $this->email,$this->id);
         $statement->execute();
         $statement->close();
-
-
+        
     }
     public function RemoveKontakt(){
         global $mysqli;
@@ -364,7 +363,7 @@ class SELEKTY{
 
         foreach ($Stresult as $row)
         {
-            echo '<option value="'.$row["stanowisko"].'">'.$row["stanowisko"].'</option>';
+            echo '<option value="'.$row["Stanowisko"].'">'.$row["Stanowisko"].'</option>';
         }
     }
 
@@ -582,7 +581,7 @@ class Nav{
         $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
             <div class='btn-group'>
         <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Kontakty</button>
-        <button type='button' class='btn btn-lg btn-success'>+</button>
+        <button type='button' class='btn btn-lg btn-success addKon' id='addKon' name='addKon'>+</button>
     </div>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
@@ -600,7 +599,7 @@ class Nav{
         $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
             <div class='btn-group'>
         <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Firmy</button>
-        <button type='button' name='FirmaBtn' id='FirmaBtn' class='btn btn-lg btn-success'>+</button>
+        <button type='button' name='FirmaBtn2' id='FirmaBtn2' class='btn btn-lg btn-success FirmaBtn2'>+</button>
     </div>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WOddzialy.php'>Oddzialy</button>
@@ -619,7 +618,7 @@ class Nav{
         $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
             <div class='btn-group'>
         <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Oddzialy</button>
-        <button type='button' class='btn btn-lg btn-success'>+</button>
+        <button type='button' name='OddzialBtn' id='OddzialBtn' class='btn btn-lg btn-success OddzialBtn'>+</button>
     </div>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
@@ -638,7 +637,7 @@ class Nav{
         $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
             <div class='btn-group'>
         <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Dzialy</button>
-        <button type='button' class='btn btn-lg btn-success'>+</button>
+        <button type='button' name='DzialBtn' id='DzialBtn' class='btn btn-lg btn-success DzialBtn'>+</button>
     </div>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
@@ -657,7 +656,7 @@ class Nav{
         $navbar .= " <nav class='navbar navbar-expand-lg navbar-light bg-primary '> 
             <div class='btn-group'>
         <button style='margin-left: 20px' type='button' class='btn btn-lg btn-warning margin-left: 200px'>Stanowiska</button>
-        <button type='button' class='btn btn-lg btn-success'>+</button>
+        <button type='button' class='btn btn-lg btn-success StanowiskoBtn'>+</button>
     </div>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='contacts.php'>Kontakty</button>
         <button href=''#' class='btn btn-lg btn-primary' onclick=location.href='WFirmy.php'>Firmy</button>
@@ -693,158 +692,6 @@ class Nav{
 }
 
 
-class Modals{
-
-function FirmModal()
-{
-    $FirmModal = '';
-    $FirmModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
-    <div class='modal-dialog modal-dialog-centered' role='document'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Firmy</h5>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body'>
-                <form>
-                    <div class='form-group'>
-                        <label for='exampleInputEmail1'>Nazwa Firmy</label>
-                        <input type='text' required id='Firm1' name='Firm1' aria-describedby='emailHelp' placeholder='Podaj Nazwe Firmy'>
-                    </div>
-                    <button type='submit' id='SubmitFirm' name='SubmitFirm' class='btn btn-primary'>Submit</button>
-                </form>
-            </div>
-            <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                <button type='button' class='btn btn-primary'>Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>";
-
-    echo $FirmModal;
-
-}
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-    function OddzialModal()
-    {
-        $OddzialModal = '';
-        $OddzialModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
-    <div class='modal-dialog modal-dialog-centered' role='document'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Oddzialu</h5>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body'>
-                <form>
-                    <div class='form-group'>
-                        <label for='exampleInputEmail1'>Podaj Nazwe Oddzialu</label>
-                        <input type='text' required id='Oddzial1' name='Oddzial1' aria-describedby='emailHelp' placeholder='Podaj Nazwe oddzialu'>
-                    </div>
-                    <button type='submit' id='SubmitOddzial' name='SubmitOddzial' class='btn btn-primary'>Submit</button>
-                </form>
-            </div>
-            <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                <button type='button' class='btn btn-primary'>Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>";
-
-        echo $OddzialModal;
-
-    }
-
-    ////////////////////////////////////////////////////////////////////
-
-
-    function DzialModal()
-    {
-        $DzialModal = '';
-        $DzialModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
-    <div class='modal-dialog modal-dialog-centered' role='document'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Działu</h5>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body'>
-                <form>
-                    <div class='form-group'>
-                        <label for='exampleInputEmail1'>Podaj Nazwe Działu</label>
-                        <input type='text' required id='Dzial1' name='Dzial1' aria-describedby='emailHelp' placeholder='Podaj Nazwe Działu'>
-                    </div>
-                    <button type='submit' id='SubmitDzial' name='SubmitDzial' class='btn btn-primary'>Submit</button>
-                </form>
-            </div>
-            <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                <button type='button' class='btn btn-primary'>Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>";
-
-        echo $DzialModal;
-
-    }
-
-
-////////////////////////////////////////////////////////////////////////
-
-
-    function StanowiskoModal()
-    {
-        $StanowiskoModal = '';
-        $StanowiskoModal .= "<div class='modal fade' id='EditModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
-    <div class='modal-dialog modal-dialog-centered' role='document'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h5 class='modal-title' id='exampleModalLongTitle'>Dodawanie Stanowisk</h5>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body'>
-                <form>
-                    <div class='form-group'>
-                        <label for='exampleInputEmail1'>Podaj Nazwe Stanowiska</label>
-                        <input type='text' required id='Stanowisko1' name='Stanowisko1' aria-describedby='emailHelp' placeholder='Podaj Nazwe Stanowiska'>
-                    </div>
-                    <button type='submit' id='SubmitStanowisko' name='SubmitStanowisko' class='btn btn-primary'>Submit</button>
-                </form>
-            </div>
-            <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                <button type='button' class='btn btn-primary'>Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>";
-
-        echo $StanowiskoModal;
-
-    }
-
-
-
-
-
-
-
-
-}
 
 
 

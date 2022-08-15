@@ -4,6 +4,7 @@
 $(document).ready(function () {
 
 
+
      const ajaxUrl = "http://localhost/projek2/Test-Praca/nowyplik.php";
      let table = $("#tabela_Kontakty").DataTable({
          orderCellsTop: true,
@@ -159,8 +160,8 @@ $(document).ready(function () {
                  targets: 10,
                  render: function (data, type, row, meta) {
                      let buttons = '<div class="btn-group btn-group-sm2" role="group">';
-                     buttons += '<button title="Edytuj" name="EditBtn"  class="btn btn-warning EditBtn">Edytuj</button>';
-                     buttons += '<button name="DeleteBtn" id="DeleteBtn" title="Usuń"  class="btn btn-danger DeleteBtn">Usuń</button>';
+                     buttons += '<button title="Edytuj" name="EditBtn" id="' + data.id +'"  class="btn btn-warning EditBtn">Edytuj</button>';
+                     buttons += '<button name="DeleteBtn" id="' + data.id +'" title="Usuń"  class="btn btn-danger DeleteBtn">Usuń</button>';
                      buttons += '</div>'
                      return buttons;
                  },
@@ -173,155 +174,118 @@ $(document).ready(function () {
 
 
      });
-    $(document).on('click'), '.DeleteBtn', function (event) {
-        var table = $('#tabela_Kontakty').DataTable();
-        event.preventDefault();
-        var id = $(this).data('id');
-        if (confirm("Czy jesteś tego pewny?")) {
-            $.ajax({
-                url: "usuwanie.php",
-                data: {id: id},
-                type: "post",
-                success: function (data) {
-                    var json = JSON.parse(data)
-                    status = json.status;
-                    if (status == 'success') {
-                        $("#" + id).closest('tr').remove();
-                    } else {
-                        alert('Failed');
-                        return;
-                    }
-                }
-            });
-        } else {
-            return null;
-        }
-    }
-    // $(document).on('submit','#updateUser',function (e){
-    //     e.preventDefault();
-    //     var id= $('#id').val();
-    //     var Imie = $('#Imie').val();
-    //     var Nazwisko= $('#Naziwsko').val();
-    //     var Firma= $('#Firma').val();
-    //     var Oddzial= $('#Oddzial').val();
-    //     var Dzial= $('#Dzial').val();
-    //     var Stanowisko= $('#Stanowisko').val();
-    //     var numerStacjonarny= $('#numerStacjonarny').val();
-    //     var numerKomorkowy= $('#numerKomorkowy').val();
-    //     var adresEmail= $('#adresEmail').val();
-    //     if(Imie != '' && Nazwisko != '' && Firma != '' && Oddzial != '' && Dzial != '' && Stanowisko != '' && numerStacjonarny != '' && numerKomorkowy != '' && adresEmail != '')
-    //     {
-    //         $ajax({
-    //             url:"update.php",
-    //             type: "post",
-    //             data:{id:id,Imie:Imie,Nazwisko:Nazwisko,Firma:Firma,Oddzial:Oddzial,Dzial:Dzial,Stanowisko:Stanowisko,numerStacjonarny:numerStacjonarny,numerKomorkowy:numerKomorkowy,adresEmail:,adresEmail},
-    //             success:function (data)
-    //             {
-    //                 table=$("#tabela_Kontakty").dataTable();
-    //                 var button = '<td><a href="javascript:void();" data-id="' +id +'" class="btn btn-warning btn-sm editbtn">Edytuj</a>'
-    //             }
-    //         })
-    //     }
-    // }
-
-
-    $('#tabela_Kontakty').on('click','.editbtn',function (event){
-        var table = $('#tabela_Kontakty').dataTable();
-        var trid = $(this).closest('tr').attr('id');
-        var id = $(this).data('id');
-        //zrob modal
-
-        $.ajax({
-            url:"get_single_data.php",
-            data:{id:id},
-            type:'post',
-            success:function(data){
-                var json = JSON.parse(data);
-                $('#ImieField').val(json.Imie);
-                $('#NazwiskoField').val(json.Nazwisko);
-                $('#FirmaField').val(json.Firma);
-                $('#OddzialField').val(json.Oddzial);
-                $('#DzialField').val(json.Dzial);
-                $('#StanoiwskoField').val(json.Stanoiwsko);
-                $('#numerStacjonarnyField').val(json.numerStacjonarny);
-                $('#numerKomorkowyField').val(json.numerKomorkowy);
-                $('#adresEmailField').val(json.adresEmail);
-            }
-        })
-    })
-
 
         $(document).on('click', '.DeleteBtn', function (event) {
-
-            var id = $(this).data('id');
+            var table = $('tabela_Kontakty').DataTable();
+            var id = $(this).attr('id');
             if (confirm('Czy jestes tego pewien?')) {
                 $.ajax({
-                    url: "http://localhost/projek2/Test-Praca/js2/usuwanie.php",
+                    url: "http://localhost/projek2/Test-Praca/usuwanie.php",
                     data: {id: id},
                     type: "post",
                     success: function (data) {
                         var json = JSON.parse(data);
                         var status = json.status;
-                        if (status == 'sucess') {
-                            $('#' + id).closest('tr').remove();
+                        if (status == 'success') {
                         } else {
                             alert('failed');
                         }
-
+                    
                     }
                 });
             }
         });
 
-///////////////////   http://localhost/projek2/Test-Praca/js2/editModal.php   ////////////////////////////////////////////
+$(document).ready(function(){  
+    $('#add').click(function(){  
+         $('#insert').val("Dodaj");  
+         $('#insert_form')[0].reset();  
+    });  
+
 
     $(document).on('click', '.EditBtn', function (event) {
-        $('#EditModal').modal(),
-        $.ajax({
-            url: "http://localhost/projek2/Test-Praca/js2/editModal.php",
-            data: {id: id},
-            type: "post",
-            success: function (data) {
-                var json = JSON.parse(data);
-                var status = json.status;
-                if (status == 'sucess') {
-                    $('#' + id).closest('tr').remove();
-                } else {
-                    alert('failed');
-                }
-
-            }
-        });
-        $('#EditModal').modal();
-        var id = $(this).data('id');
-        // if (confirm('Czy jestes tego pewien?')) {
-        //     $.ajax({
-        //         url: "http://localhost/projek2/Test-Praca/js2/edytowanie.php",
-        //         data: {id: id},
-        //         type: "post",
-        //         success: function (data) {
-        //             var json = JSON.parse(data);
-        //             var status = json.status;
-        //             if (status == 'sucess') {
-        //                 $('#' + id).closest('tr').remove();
-        //             } else {
-        //                 alert('failed');
-        //             }
-        //
-        //         }
-        //     });
-        // }
-    });
-
-///////////////////////////////////////////////////////////
-    function EditModal() {
-        return modalCreate('Pobierz szanse z LS', 'http://localhost/projek2/Test-Praca/js2/editModal.php')
+var id = $(this).attr("id");
+$.ajax({
+    url: "http://localhost/projek2/Test-Praca/fetchUpdateKom.php",
+    method:"POST",
+    data:{id:id},
+    dataType:"json",
+    success:function(data){
+        $('#Imie').val(data.Imie);
+        $('#Nazwisko').val(data.Nazwisko);
+        $('#Firma').val(data.Firma);
+        $('#Oddzial').val(data.Oddzial);
+        $('#Dzial').val(data.Dzial);
+        $('#Stanowisko').val(data.Stanowisko);
+        $('#numerStacjonarny').val(data.numerStacjonarny);
+        $('#numerKomorkowy').val(data.numerKomorkowy);
+        $('#adresEmail').val(data.adresEmail);
+        $('#id').val(data.id);
+        $('#insert').val("Edytuj");
+        $('#update_Modal').modal('show');
     }
-
- });
-
-
+     });
+});
 
 
 
+$('#insert_form').on("submit", function(event){  
+    event.preventDefault();   
+         $.ajax({  
+              url:"http://localhost/projek2/Test-Praca/insertKon.php",  
+              method:"POST",  
+              data:$('#insert_form').serialize(),  
+              beforeSend:function(){  
+                   $('#insert').val("Dodawanie");  
+              },  
+              success:function(data){  
+                   $('#insert_form')[0].reset();  
+                   $('#update_Modal').modal('hide');  
+                   $('#tabela_Kontakty').html(data);  
+              }  
+         });  
+      
+});  
 
+    $(document).on('click', '.addKon', function (event) {
+        var id = $(this).attr("id");
+        $.ajax({
+            url: "http://localhost/projek2/Test-Praca/nowyplik.php",
+            method:"POST",
+            data:{id:id},
+            dataType:"json",
+            success:function(){
+                $('#insert1').val("Dodaj");
+                $('#update_Modal').modal('show');
+            }
+        })
+            });
+    
+            $(document).on('submit','#update_Modal',function(event){
+                var Imie = $('#Imie').val();
+                var Nazwisko = $('#Nazwisko').val();
+                var Firma = $('#Firma').val();
+                var Oddzial = $('#Oddzial').val();
+                var Dzial = $('#Dzial').val();
+                var Stanowisko = $('#Stanowisko').val();
+                var numerStacjonarny = $('#numerStacjonarny').val();
+                var numerKomorkowy = $('#numerKomorkowy').val();
+                var adresEmail = $('#adresEmail').val();
+                $.ajax({
+                    url: 'http://localhost/projek2/Test-Praca/insertKon.php',
+                    method: 'POST',
+                    data:new FormData(this),
+                    contentType:false,
+                    processData:false,
+                    success: function(data)
+                    {
+                        $('#update_Modal')[0].reset();
+                        $('#update_Modal').modal('hide');
+                        DataTable.ajax.reload();
+                    }
+                });
+    
+            });
+
+  });
+});
