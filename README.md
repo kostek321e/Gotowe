@@ -19,3 +19,17 @@ WHERE
     AND id_company = 5 
     AND typ = 0 
     AND numer_wysylki LIKE CONCAT('%/', MONTH(NOW()), '/', RIGHT(YEAR(NOW()), 2))
+    
+    
+    
+    
+    SELECT 
+    IFNULL(MAX(CAST(SUBSTRING_INDEX(numer_wysylki, '/', -1) AS UNSIGNED)) + 1, 1) AS max_nr,
+    MONTH(NOW()) AS miesiac,
+    RIGHT(YEAR(NOW()), 2) AS rok 
+FROM korespondencja_new 
+WHERE 
+    id_branch = 2 
+    AND id_company = 5 
+    AND typ = 0 
+    AND SUBSTRING_INDEX(numer_wysylki, '/', -3) LIKE CONCAT('%/', MONTH(NOW()), '/', RIGHT(YEAR(NOW()), 2))
